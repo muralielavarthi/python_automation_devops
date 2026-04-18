@@ -1,1 +1,2 @@
-# python_automation_devops
+# DevOps Automation Scripts (Python)
+- This repository contains a collection of common DevOps automation scripts written in Python, designed for real-time use in production and development environments.
