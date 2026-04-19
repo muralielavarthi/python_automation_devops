@@ -1,9 +1,10 @@
 # We will fetch list of Open Pull Requests
 
 import requests
+import os
 
-def get_PR_authors(item):
-        response=requests.get(item)
+def get_PR_authors(URL):
+        response=requests.get(URL,headers=headers)
         if response.status_code == 200:
              data_dict=response.json() # parses JSON into Dict
              return count_prs(data_dict)
@@ -23,6 +24,13 @@ def count_prs(data):
     
 owner_name=input("Enter a GitHub owner name:")
 repo_name=input("Enter a Repo name:")
+
+token=os.getenv("GIT_HUB_TOKEN")
+
+# Github Account Authorization for Private Repos
+headers = {
+     "Authorization": f"Bearer {token}"
+}
 
 final_result=get_PR_authors(f"https://api.github.com/repos/{owner_name}/{repo_name}/pulls?state=open")
 print(final_result)
